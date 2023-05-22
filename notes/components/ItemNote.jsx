@@ -1,27 +1,29 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
 import theme from '../theme'
 
 function ItemNote() {
     return (
-        <View
-            style={styles.note}
-        >
+        <TouchableOpacity>
             <View
-                style={styles.noteInfo}
+                style={styles.note}
             >
-                <View style={styles.avatarNote} ><Text style={[styles.text, styles.textAvatar]}>T</Text></View>
                 <View
-                    style={styles.contentInfo}
+                    style={styles.noteInfo}
                 >
-                    <Text style={styles.text}>Titulo Notica</Text>
-                    <Text style={styles.text}>22/22/2022</Text>
+                    <View style={styles.avatarNote} ><Text style={[styles.text, styles.textAvatar]}>T</Text></View>
+                    <View
+                        style={styles.contentInfo}
+                    >
+                        <Text style={styles.text}>Titulo Notica</Text>
+                        <Text style={styles.text}>22/22/2022</Text>
+                    </View>
+                </View>
+                <View>
+                    <MaterialIcons name="arrow-forward-ios" size={24} color={theme.white} />
                 </View>
             </View>
-            <View>
-                <MaterialIcons name="arrow-forward-ios" size={24} color={theme.white} />
-            </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
@@ -35,6 +37,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         paddingHorizontal: 10,
+        marginBottom: 10,
         backgroundColor: theme.black
     },
     noteInfo: {

@@ -1,17 +1,26 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { MaterialIcons } from '@expo/vector-icons'
 import theme from '../theme'
 import ItemNote from '../components/ItemNote'
+import Back from '../components/Back'
+import { useNavigation } from '@react-navigation/native'
 
 function AllNotes() {
+
+  const route = useNavigation()
+
+  const back = () => route.goBack()
+
   return (
     <SafeAreaView
       style={styles.container}
     >
-      <View>
-        <MaterialIcons name="arrow-back" size={24} color={theme.white} />
-      </View>
+      <Back navigate={back} /> 
+      <ItemNote />
+      <ItemNote />
+      <ItemNote />
+      <ItemNote />
+      <ItemNote />
       <ItemNote />
     </SafeAreaView>
   )
@@ -21,7 +30,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.primary
-  },
+  }
 })
 
 export default AllNotes
