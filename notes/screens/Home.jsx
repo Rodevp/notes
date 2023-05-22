@@ -1,9 +1,16 @@
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Text, StyleSheet, View } from 'react-native'
+import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
 import theme from '../theme'
+import { useNavigation } from '@react-navigation/native'
 
 function Home() {
+
+    const route = useNavigation()
+
+    const toAllNotes = () => route.navigate("Notes")
+    const toArchiveds = () => route.navigate("Archived")
+
     return (
         <SafeAreaView
             style={styles.home}
@@ -19,7 +26,9 @@ function Home() {
                 <View
                     style={styles.cardLogout}
                 >
-                    <MaterialIcons name='logout' size={34} color={theme.white} />
+                    <TouchableOpacity>
+                        <MaterialIcons name='logout' size={34} color={theme.white} />
+                    </TouchableOpacity>
                 </View>
             </View>
             <View
@@ -30,24 +39,32 @@ function Home() {
             <View
                 style={styles.contentItems}
             >
-                <View
-                    style={styles.item}
+                <TouchableOpacity
+                    onPress={toAllNotes}
                 >
-                    <View style={styles.itemInfo}>
-                        <MaterialIcons name="insert-drive-file" size={24} color={theme.orange} />
-                        <Text style={[styles.itemText, styles.optionTitle]}>Todas</Text>
+                    <View
+                        style={styles.item}
+                    >
+                        <View style={styles.itemInfo}>
+                            <MaterialIcons name="insert-drive-file" size={24} color={theme.orange} />
+                            <Text style={[styles.itemText, styles.optionTitle]}>Todas</Text>
+                        </View>
+                        <Text style={[styles.itemText, styles.quantityItem]}>188</Text>
                     </View>
-                    <Text style={[styles.itemText, styles.quantityItem]}>188</Text>
-                </View>
-                <View
-                    style={styles.item}
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={toArchiveds}
                 >
-                    <View style={styles.itemInfo}>
-                        <MaterialIcons name="archive" size={24} color={theme.green} />
-                        <Text style={[styles.itemText, styles.optionTitle]}>Archivadas</Text>
+                    <View
+                        style={styles.item}
+                    >
+                        <View style={styles.itemInfo}>
+                            <MaterialIcons name="archive" size={24} color={theme.green} />
+                            <Text style={[styles.itemText, styles.optionTitle]}>Archivadas</Text>
+                        </View>
+                        <Text style={[styles.itemText, styles.quantityItem]}>38</Text>
                     </View>
-                    <Text style={[styles.itemText, styles.quantityItem]}>38</Text>
-                </View>
+                </TouchableOpacity>
                 <View
                     style={styles.item}
                 >
@@ -61,11 +78,13 @@ function Home() {
             <View
                 style={styles.contentAddNote}
             >
-                <View
-                    style={styles.btnAdd}
-                >
-                    <MaterialIcons name="add" size={34} color={theme.white} />
-                </View>
+                <TouchableOpacity>
+                    <View
+                        style={styles.btnAdd}
+                    >
+                        <MaterialIcons name="add" size={34} color={theme.white} />
+                    </View>
+                </TouchableOpacity>
             </View>
         </SafeAreaView>
     )
