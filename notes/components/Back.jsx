@@ -16,7 +16,7 @@ function Back({ navigate }) {
 
 const styles = StyleSheet.create({
     back: {
-        width: "100%",
+        width: "20%",
         height: 50,
         paddingHorizontal: 10,
         marginBottom: 10,
