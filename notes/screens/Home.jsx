@@ -33,23 +33,29 @@ function Home() {
                 <View
                     style={styles.item}
                 >
-                    <MaterialIcons name="insert-drive-file" size={24} color={theme.orange} />
-                    <Text style={[styles.itemText, styles.optionTitle]}>Todas</Text>
-                    <Text style={[styles.itemText]}>188</Text>
+                    <View style={styles.itemInfo}>
+                        <MaterialIcons name="insert-drive-file" size={24} color={theme.orange} />
+                        <Text style={[styles.itemText, styles.optionTitle]}>Todas</Text>
+                    </View>
+                    <Text style={[styles.itemText, styles.quantityItem]}>188</Text>
                 </View>
                 <View
                     style={styles.item}
                 >
-                    <MaterialIcons name="archive" size={24} color={theme.green} />
-                    <Text style={[styles.itemText, styles.optionTitle]}>Archivadas</Text>
-                    <Text style={[styles.itemText]}>38</Text>
+                    <View style={styles.itemInfo}>
+                        <MaterialIcons name="archive" size={24} color={theme.green} />
+                        <Text style={[styles.itemText, styles.optionTitle]}>Archivadas</Text>
+                    </View>
+                    <Text style={[styles.itemText, styles.quantityItem]}>38</Text>
                 </View>
                 <View
                     style={styles.item}
                 >
-                    <MaterialIcons name="insert-drive-file" size={24} color={theme.red} />
-                    <Text style={[styles.itemText, styles.optionTitle]}>Eliminadas</Text>
-                    <Text style={[styles.itemText]}>188</Text>
+                    <View style={styles.itemInfo}>
+                        <MaterialIcons name="insert-drive-file" size={24} color={theme.red} />
+                        <Text style={[styles.itemText, styles.optionTitle]}>Eliminadas</Text>
+                    </View>
+                    <Text style={[styles.itemText, styles.quantityItem]}>188</Text>
                 </View>
             </View>
         </SafeAreaView>
@@ -104,16 +110,20 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: theme.white
     },
-    contentItems:{
+    contentItems: {
         width: "90%"
     },
     item: {
         width: "100%",
         height: 40,
         flexDirection: "row",
+        justifyContent: "space-between",
         alignItems: "center",
         borderRadius: 6,
-        paddingHorizontal: 5,
+        paddingHorizontal: 8
+    },
+    itemInfo: {
+        flexDirection: "row"
     },
     itemText: {
         color: theme.white
