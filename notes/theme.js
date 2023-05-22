@@ -4,5 +4,8 @@ export default {
     yellow: '#ffd60a',
     blue: '#a2d2ff',
     red: '#ef233c',
-    blueDark: '#3a86ff'
+    blueDark: '#3a86ff',
+    black: '#212529',
+    orange: '#fcbf49',
+    green: '#52b788'
 }

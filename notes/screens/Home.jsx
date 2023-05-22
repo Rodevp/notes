@@ -22,6 +22,36 @@ function Home() {
                     <MaterialIcons name='logout' size={34} color={theme.white} />
                 </View>
             </View>
+            <View
+                style={styles.option}
+            >
+                <Text style={styles.titleOptions}>Opciones</Text>
+            </View>
+            <View
+                style={styles.contentItems}
+            >
+                <View
+                    style={styles.item}
+                >
+                    <MaterialIcons name="insert-drive-file" size={24} color={theme.orange} />
+                    <Text style={[styles.itemText, styles.optionTitle]}>Todas</Text>
+                    <Text style={[styles.itemText]}>188</Text>
+                </View>
+                <View
+                    style={styles.item}
+                >
+                    <MaterialIcons name="archive" size={24} color={theme.green} />
+                    <Text style={[styles.itemText, styles.optionTitle]}>Archivadas</Text>
+                    <Text style={[styles.itemText]}>38</Text>
+                </View>
+                <View
+                    style={styles.item}
+                >
+                    <MaterialIcons name="insert-drive-file" size={24} color={theme.red} />
+                    <Text style={[styles.itemText, styles.optionTitle]}>Eliminadas</Text>
+                    <Text style={[styles.itemText]}>188</Text>
+                </View>
+            </View>
         </SafeAreaView>
     )
 }
@@ -35,12 +65,13 @@ const styles = StyleSheet.create({
     },
     cardHome: {
         width: "90%",
-        borderRadius: 16,
         height: 180,
         flexDirection: "row",
+        justifyContent: "space-between",
+        borderRadius: 16,
         paddingVertical: 10,
         paddingHorizontal: 10,
-        justifyContent: "space-between",
+        marginBottom: 50,
         backgroundColor: theme.yellow
     },
     cardLogout: {
@@ -48,7 +79,7 @@ const styles = StyleSheet.create({
         height: 50,
         alignItems: "center",
         justifyContent: "center"
-    },  
+    },
     title: {
         fontSize: 35,
         color: theme.white
@@ -60,6 +91,35 @@ const styles = StyleSheet.create({
     date: {
         fontSize: 18,
         color: theme.white
+    },
+    option: {
+        width: "90%",
+        justifyContent: "center",
+        paddingHorizontal: 10,
+        height: 40,
+        borderRadius: 10,
+        backgroundColor: theme.black
+    },
+    titleOptions: {
+        fontSize: 15,
+        color: theme.white
+    },
+    contentItems:{
+        width: "90%"
+    },
+    item: {
+        width: "100%",
+        height: 40,
+        flexDirection: "row",
+        alignItems: "center",
+        borderRadius: 6,
+        paddingHorizontal: 5,
+    },
+    itemText: {
+        color: theme.white
+    },
+    optionTitle: {
+        paddingHorizontal: 10
     }
 })
 
