@@ -58,6 +58,15 @@ function Home() {
                     <Text style={[styles.itemText, styles.quantityItem]}>188</Text>
                 </View>
             </View>
+            <View
+                style={styles.contentAddNote}
+            >
+                <View
+                    style={styles.btnAdd}
+                >
+                    <MaterialIcons name="add" size={34} color={theme.white} />
+                </View>
+            </View>
         </SafeAreaView>
     )
 }
@@ -130,6 +139,21 @@ const styles = StyleSheet.create({
     },
     optionTitle: {
         paddingHorizontal: 10
+    },
+    contentAddNote: {
+        width: "90%",
+        height: 80,
+        bottom: "3%",
+        position: "absolute",
+        alignItems: "center"
+    },
+    btnAdd: {
+        width: 70,
+        height: 70,
+        borderRadius: 50,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: theme.black
     }
 })
 
