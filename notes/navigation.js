@@ -10,7 +10,7 @@ function Routes() {
 
     return (
         <Stack.Navigator
-            initialRouteName='Home'
+            initialRouteName='Note'
             screenOptions={{
                 headerShown: false,
             }}
