@@ -1,9 +1,11 @@
 import { useNavigation } from '@react-navigation/native'
 import { useContext, useState } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, TextInput, Alert } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { DataContext } from '../context/auth'
 import theme from '../theme'
+
+import { supabase } from '../lib/supabase'
 
 function Login() {
 
@@ -13,6 +15,30 @@ function Login() {
     const route = useNavigation()
 
     const { setAuth } = useContext(DataContext)
+
+    const authUser = async () => {
+        try {
+
+            const { data, error } = await supabase?.auth?.signInWithPassword({
+                email,
+                password
+            })
+
+            if (error) {
+                return Alert.alert('Error', 'Usuario o Contraseña incorrecto')
+            }
+
+            setAuth(true)
+
+            console.log('data -> ', data)
+
+            return route.navigate("Home")
+
+        } catch (err) {
+            console.log('error server', err?.message)
+        }
+    }
+
 
     return (
         <SafeAreaView
@@ -39,12 +65,11 @@ function Login() {
                 </View>
                 <TouchableOpacity
                     onPress={() => {
-                        setAuth(true)
-                        route.navigate("Home")
+                        authUser()
                     }}
                     style={styles.btn}
                 >
-                    <Text style={styles.textBtn} >Home</Text>
+                    <Text style={styles.textBtn} >Entrar</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => route.navigate("SingUp")}
