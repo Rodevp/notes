@@ -1,7 +1,8 @@
 import { NavigationContainer } from '@react-navigation/native'
 import Routes from './navigation'
 import { StatusBar } from 'react-native'
-import { ContextProvider } from './context/auth';
+import { ContextProvider } from './context/auth'
+import { ContextUserProvider } from './context/user'
 
 
 export default function App() {
@@ -10,7 +11,9 @@ export default function App() {
       <StatusBar translucent />
       <ContextProvider>
         <NavigationContainer>
-          <Routes />
+          <ContextUserProvider>
+            <Routes />
+          </ContextUserProvider>
         </NavigationContainer>
       </ContextProvider>
     </>
