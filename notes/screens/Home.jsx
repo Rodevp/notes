@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native'
 import { ContextUser } from '../context/user'
 import { DataContext } from '../context/auth'
 import { useContext, useState } from 'react'
+import { useAddTask } from '../hooks/useAddNote'
 
 function Home() {
 
@@ -18,7 +19,7 @@ function Home() {
     const { userData } = useContext(ContextUser)
     const { setAuth } = useContext(DataContext)
 
-    console.log('user data -> ', userData)
+    const { add, setDescription, setName } = useAddTask(userData?.user?.id)
 
     return (
         <SafeAreaView
@@ -121,13 +122,16 @@ function Home() {
                         <TextInput
                             style={styles.input}
                             placeholder='Titulo'
+                            onChangeText={(title) => setName(title)}
                         />
                         <TextInput
                             style={styles.input}
                             placeholder='Description'
+                            onChangeText={(desc) => setDescription(desc)}
                         />
                         <TouchableOpacity
                             style={styles.btn}
+                            onPress={add}
                         >
                             <Text style={styles.titleModal}>
                                 Agregar
