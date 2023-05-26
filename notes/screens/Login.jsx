@@ -3,6 +3,7 @@ import { useContext, useState } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, TextInput, Alert } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { DataContext } from '../context/auth'
+import { ContextUser } from '../context/user'
 import theme from '../theme'
 
 import { supabase } from '../lib/supabase'
@@ -15,6 +16,7 @@ function Login() {
     const route = useNavigation()
 
     const { setAuth } = useContext(DataContext)
+    const { setUserData } = useContext(ContextUser)
 
     const authUser = async () => {
         try {
@@ -28,9 +30,18 @@ function Login() {
                 return Alert.alert('Error', 'Usuario o Contraseña incorrecto')
             }
 
-            setAuth(true)
+            setUserData(state => {
+                return {
+                    ...state,
+                    user: {
+                        token: data?.session?.access_token,
+                        id: data?.user?.id,
+                        email: data?.user?.email
+                    }
+                }
+            })
 
-            console.log('data -> ', data)
+            setAuth(true)
 
             return route.navigate("Home")
 

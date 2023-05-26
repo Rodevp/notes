@@ -3,6 +3,9 @@ import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
 import theme from '../theme'
 import { useNavigation } from '@react-navigation/native'
+import { ContextUser } from '../context/user'
+import { DataContext } from '../context/auth'
+import { useContext } from 'react'
 
 function Home() {
 
@@ -10,6 +13,11 @@ function Home() {
 
     const toAllNotes = () => route.navigate("Notes")
     const toArchiveds = () => route.navigate("Archived")
+
+    const { userData } = useContext(ContextUser)
+    const { setAuth } = useContext(DataContext)
+
+    console.log('user data -> ', userData)
 
     return (
         <SafeAreaView
@@ -20,13 +28,17 @@ function Home() {
             >
                 <View>
                     <Text style={styles.title} >BIENVENIDO</Text>
-                    <Text style={styles.userName} >@Eduardito</Text>
+                    <Text style={styles.userName} >{userData?.user?.email}</Text>
                     <Text style={styles.date} >22/22/2022</Text>
                 </View>
                 <View
                     style={styles.cardLogout}
                 >
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {
+                            setAuth(false)
+                        }}
+                    >
                         <MaterialIcons name='logout' size={34} color={theme.white} />
                     </TouchableOpacity>
                 </View>
@@ -49,7 +61,7 @@ function Home() {
                             <MaterialIcons name="insert-drive-file" size={24} color={theme.orange} />
                             <Text style={[styles.itemText, styles.optionTitle]}>Todas</Text>
                         </View>
-                        <Text style={[styles.itemText, styles.quantityItem]}>188</Text>
+                        <Text style={[styles.itemText, styles.quantityItem]}>{userData?.task?.length}</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -62,7 +74,7 @@ function Home() {
                             <MaterialIcons name="archive" size={24} color={theme.green} />
                             <Text style={[styles.itemText, styles.optionTitle]}>Archivadas</Text>
                         </View>
-                        <Text style={[styles.itemText, styles.quantityItem]}>38</Text>
+                        <Text style={[styles.itemText, styles.quantityItem]}>{userData?.archived?.length}</Text>
                     </View>
                 </TouchableOpacity>
                 <View
@@ -72,7 +84,7 @@ function Home() {
                         <MaterialIcons name="insert-drive-file" size={24} color={theme.red} />
                         <Text style={[styles.itemText, styles.optionTitle]}>Eliminadas</Text>
                     </View>
-                    <Text style={[styles.itemText, styles.quantityItem]}>188</Text>
+                    <Text style={[styles.itemText, styles.quantityItem]}>{userData?.delete?.length}</Text>
                 </View>
             </View>
             <View

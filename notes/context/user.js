@@ -4,17 +4,22 @@ export const ContextUser = createContext()
 
 export const ContextUserProvider = (props) => {
 
-    const [userData, setUserData] = useState(null)
-
-    const dataCtx = {
+    const [userData, setUserData] = useState({
         user: {},
-        task: []
+        task: [],
+        archived: [],
+        delete: []
+    })
+
+    const dataContext = {
+        userData,
+        setUserData
     }
 
     return (
-        <DataContext.Provider value={dataCtx} >
+        <ContextUser.Provider value={dataContext} >
             {props.children}
-        </DataContext.Provider>
+        </ContextUser.Provider>
     )
 
 }

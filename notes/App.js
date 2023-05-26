@@ -9,13 +9,13 @@ export default function App() {
   return (
     <>
       <StatusBar translucent />
-      <ContextProvider>
-        <NavigationContainer>
+      <NavigationContainer>
+        <ContextProvider>
           <ContextUserProvider>
             <Routes />
           </ContextUserProvider>
-        </NavigationContainer>
-      </ContextProvider>
+        </ContextProvider>
+      </NavigationContainer>
     </>
   );
 }
