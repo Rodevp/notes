@@ -1,11 +1,11 @@
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
+import { Text, StyleSheet, View, TouchableOpacity, Modal, TextInput } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
 import theme from '../theme'
 import { useNavigation } from '@react-navigation/native'
 import { ContextUser } from '../context/user'
 import { DataContext } from '../context/auth'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 
 function Home() {
 
@@ -13,6 +13,7 @@ function Home() {
 
     const toAllNotes = () => route.navigate("Notes")
     const toArchiveds = () => route.navigate("Archived")
+    const [modalVisible, setModalVisible] = useState(false)
 
     const { userData } = useContext(ContextUser)
     const { setAuth } = useContext(DataContext)
@@ -90,7 +91,11 @@ function Home() {
             <View
                 style={styles.contentAddNote}
             >
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => {
+                        setModalVisible(true)
+                    }}
+                >
                     <View
                         style={styles.btnAdd}
                     >
@@ -98,6 +103,39 @@ function Home() {
                     </View>
                 </TouchableOpacity>
             </View>
+            <Modal
+                animationType='fade'
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                    setModalVisible(!modalVisible)
+                }}
+            >
+                <View
+                    style={styles.modalItem}
+                >
+                    <View
+                        style={styles.modalForm}
+                    >
+                        <Text style={styles.titleModal}>Agregar Nota</Text>
+                        <TextInput
+                            style={styles.input}
+                            placeholder='Titulo'
+                        />
+                        <TextInput
+                            style={styles.input}
+                            placeholder='Description'
+                        />
+                        <TouchableOpacity
+                            style={styles.btn}
+                        >
+                            <Text style={styles.titleModal}>
+                                Agregar
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
         </SafeAreaView>
     )
 }
@@ -185,6 +223,42 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: theme.black
+    },
+    modalItem: {
+        width: "100%",
+        height: "90%",
+        marginTop: "10%",
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    modalForm: {
+        width: "90%",
+        height: "40%",
+        borderRadius: 10,
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 20,
+        backgroundColor: theme.orange
+    },
+    input: {
+        width: "80%",
+        height: "20%",
+        paddingHorizontal: 15,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: theme.primary
+    },
+    btn: {
+        width: "60%",
+        height: 45,
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 10,
+        backgroundColor: theme.primary
+    },
+    titleModal: {
+        fontSize: 20,
+        color: theme.white
     }
 })
 
