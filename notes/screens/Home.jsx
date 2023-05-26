@@ -82,7 +82,7 @@ function Home() {
                     style={styles.item}
                 >
                     <View style={styles.itemInfo}>
-                        <MaterialIcons name="insert-drive-file" size={24} color={theme.red} />
+                        <MaterialIcons name="delete" size={24} color={theme.red} />
                         <Text style={[styles.itemText, styles.optionTitle]}>Eliminadas</Text>
                     </View>
                     <Text style={[styles.itemText, styles.quantityItem]}>{userData?.delete?.length}</Text>
